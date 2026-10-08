@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ 'Editar produto' if produto else 'Novo produto' }}{% endblock %}
+{% block conteudo %}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h4 mb-4">{{ 'Editar produto' if produto else 'Novo produto' }}</h1>
+                <form method="POST"
+                      action="{{ url_for('produtos.editar', id=produto.id) if produto else url_for('produtos.novo') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="nome" name="nome"
+                               value="{{ dados.nome }}" maxlength="100" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="categoria" name="categoria"
+                               value="{{ dados.categoria }}" maxlength="50" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="preco" class="form-label">Preço (R$) <span class="text-danger">*</span></label>
+                            <input type="text" inputmode="decimal" class="form-control" id="preco" name="preco"
+                                   value="{{ dados.preco }}" placeholder="0,00" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="estoque" class="form-label">Estoque <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="estoque" name="estoque"
+                                   value="{{ dados.estoque }}" min="0" step="1" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="descricao" name="descricao" rows="3"
+                                  maxlength="500">{{ dados.descricao }}</textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            {{ 'Salvar alterações' if produto else 'Cadastrar' }}
+                        </button>
+                        <a href="{{ url_for('produtos.lista') }}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

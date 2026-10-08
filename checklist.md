@@ -10,11 +10,11 @@
 
 ## Fase 1: Setup e Ambiente
 
-- [ ] Criar estrutura do projeto (`app.py`, `templates/`)
-- [ ] Inicializar Git e configurar `.gitignore`
-- [ ] Configurar `requirements.txt` (Flask, Flask-SQLAlchemy, etc.)
-- [ ] Criar template base com Bootstrap 5 e barra de navegação responsiva
-- [ ] **COMMIT:** "Setup inicial do projeto SGC"
+- [x] Criar estrutura do projeto (`app.py`, `templates/`)
+- [x] Inicializar Git e configurar `.gitignore`
+- [x] Configurar `requirements.txt` (Flask, Flask-SQLAlchemy, etc.)
+- [x] Criar template base com Bootstrap 5 e barra de navegação responsiva
+- [x] **COMMIT:** "Setup inicial do projeto SGC"
 
 ---
 

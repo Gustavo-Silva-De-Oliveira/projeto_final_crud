@@ -19,16 +19,55 @@
             </button>
             <div class="collapse navbar-collapse" id="menuPrincipal">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if g.usuario %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}"
                            href="{{ url_for('index') }}">Início</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.blueprint == 'clientes' %}active{% endif %}"
+                           href="{{ url_for('clientes.lista') }}">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.blueprint == 'produtos' %}active{% endif %}"
+                           href="{{ url_for('produtos.lista') }}">Produtos</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    {% if g.usuario %}
+                    <li class="nav-item d-flex align-items-center gap-3">
+                        <span class="navbar-text">Olá, <strong>{{ g.usuario.username }}</strong></span>
+                        <form method="POST" action="{{ url_for('auth.logout') }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-outline-light btn-sm">Sair</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'auth.login' %}active{% endif %}"
+                           href="{{ url_for('auth.login') }}">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'auth.registro' %}active{% endif %}"
+                           href="{{ url_for('auth.registro') }}">Registrar-se</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
 
     <main class="container my-4 flex-grow-1">
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, mensagem in mensagens %}
+            <div class="alert alert-{{ 'info' if categoria == 'message' else categoria }} alert-dismissible fade show" role="alert">
+                {{ mensagem }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+            </div>
+            {% endfor %}
+        {% endwith %}
+
         {% block conteudo %}{% endblock %}
     </main>
 

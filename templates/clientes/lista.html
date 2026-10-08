@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block titulo %}Clientes{% endblock %}
+{% block conteudo %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+    <h1 class="h3 mb-0">Clientes</h1>
+    <a class="btn btn-primary" href="{{ url_for('clientes.novo') }}">+ Novo cliente</a>
+</div>
+
+<form method="GET" action="{{ url_for('clientes.lista') }}" class="row g-2 mb-3" role="search">
+    <div class="col">
+        <input type="search" class="form-control" name="q" value="{{ busca }}"
+               placeholder="Buscar cliente por nome" maxlength="100" aria-label="Buscar cliente por nome">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+        {% if busca %}<a class="btn btn-outline-secondary" href="{{ url_for('clientes.lista') }}">Limpar</a>{% endif %}
+    </div>
+</form>
+
+<div class="card shadow-sm">
+    {% if clientes %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Cadastro</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.telefone | telefone if cliente.telefone else '—' }}</td>
+                    <td>{{ cliente.cpf_cnpj | cpf_cnpj }}</td>
+                    <td>{{ cliente.data_cadastro.strftime('%d/%m/%Y') }}</td>
+                    <td class="text-end text-nowrap">
+                        <a class="btn btn-outline-secondary btn-sm"
+                           href="{{ url_for('clientes.editar', id=cliente.id) }}">Editar</a>
+                        <button type="button" class="btn btn-outline-danger btn-sm"
+                                data-bs-toggle="modal" data-bs-target="#modalExcluir"
+                                data-nome="{{ cliente.nome }}"
+                                data-action="{{ url_for('clientes.excluir', id=cliente.id) }}">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card-body text-center text-muted py-5">
+        {% if busca %}Nenhum cliente encontrado para &ldquo;<strong>{{ busca }}</strong>&rdquo;.{% else %}Nenhum cliente cadastrado ainda.{% endif %}
+    </div>
+    {% endif %}
+</div>
+
+{% set tipo_item = 'cliente' %}
+{% include '_modal_excluir.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/excluir-modal.js') }}"></script>
+{% endblock %}

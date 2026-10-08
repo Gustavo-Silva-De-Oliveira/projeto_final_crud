@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block titulo %}Erro interno{% endblock %}
+{% block conteudo %}
+<div class="text-center py-5">
+    <p class="display-1 fw-bold text-secondary mb-0">500</p>
+    <h1 class="h3 mb-3">Erro interno</h1>
+    <p class="text-muted mb-4">Ocorreu um problema ao processar a sua solicitação. Nenhuma alteração foi salva. Tente novamente em instantes.</p>
+    <a class="btn btn-primary" href="{{ url_for('index') }}">Voltar ao início</a>
+</div>
+{% endblock %}

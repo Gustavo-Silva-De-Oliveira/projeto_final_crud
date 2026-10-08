@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block titulo %}Produtos{% endblock %}
+{% block conteudo %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+    <h1 class="h3 mb-0">Produtos</h1>
+    <a class="btn btn-primary" href="{{ url_for('produtos.novo') }}">+ Novo produto</a>
+</div>
+
+<form method="GET" action="{{ url_for('produtos.lista') }}" class="row g-2 mb-3" role="search">
+    <div class="col">
+        <input type="search" class="form-control" name="q" value="{{ busca }}"
+               placeholder="Buscar produto por nome" maxlength="100" aria-label="Buscar produto por nome">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+        {% if busca %}<a class="btn btn-outline-secondary" href="{{ url_for('produtos.lista') }}">Limpar</a>{% endif %}
+    </div>
+</form>
+
+<div class="card shadow-sm">
+    {% if produtos %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th class="text-end">Preço</th>
+                    <th class="text-end">Estoque</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>
+                        {{ produto.nome }}
+                        {% if produto.descricao %}
+                        <div class="small text-muted text-truncate" style="max-width: 320px;">{{ produto.descricao }}</div>
+                        {% endif %}
+                    </td>
+                    <td>{{ produto.categoria }}</td>
+                    <td class="text-end text-nowrap">{{ produto.preco | moeda }}</td>
+                    <td class="text-end">
+                        {% if produto.estoque == 0 %}
+                        <span class="badge text-bg-danger">Sem estoque</span>
+                        {% else %}
+                        {{ produto.estoque }}
+                        {% endif %}
+                    </td>
+                    <td class="text-end text-nowrap">
+                        <a class="btn btn-outline-secondary btn-sm"
+                           href="{{ url_for('produtos.editar', id=produto.id) }}">Editar</a>
+                        <button type="button" class="btn btn-outline-danger btn-sm"
+                                data-bs-toggle="modal" data-bs-target="#modalExcluir"
+                                data-nome="{{ produto.nome }}"
+                                data-action="{{ url_for('produtos.excluir', id=produto.id) }}">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card-body text-center text-muted py-5">
+        {% if busca %}Nenhum produto encontrado para &ldquo;<strong>{{ busca }}</strong>&rdquo;.{% else %}Nenhum produto cadastrado ainda.{% endif %}
+    </div>
+    {% endif %}
+</div>
+
+{% set tipo_item = 'produto' %}
+{% include '_modal_excluir.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/excluir-modal.js') }}"></script>
+{% endblock %}
