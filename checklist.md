@@ -20,51 +20,51 @@
 
 ## Fase 2: Módulo de Usuários e Autenticação
 
-- [ ] Modelar classe `Usuario` (`id`, `username`, `email`, `senha_hash`)
-- [ ] Criar rota e formulário de Registro de Usuários com hashing de senha
-- [ ] Criar rota e tela de Login validando hash
-- [ ] Criar rota de Logout limpando a sessão
-- [ ] Implementar controle de acesso (bloquear páginas do sistema para não autenticados)
-- [ ] **COMMIT:** "Implementa sistema de autenticação e sessões"
+- [x] Modelar classe `Usuario` (`id`, `username`, `email`, `senha_hash`)
+- [x] Criar rota e formulário de Registro de Usuários com hashing de senha
+- [x] Criar rota e tela de Login validando hash
+- [x] Criar rota de Logout limpando a sessão
+- [x] Implementar controle de acesso (bloquear páginas do sistema para não autenticados)
+- [x] **COMMIT:** "Implementa sistema de autenticação e sessões"
 
 ---
 
 ## Fase 3: CRUD de Clientes
 
-- [ ] Modelar classe `Cliente` (`id`, `nome`, `email`, `telefone`, `cpf_cnpj`, `data_cadastro`)
-- [ ] Rota `GET /clientes` com listagem em tabela
-- [ ] Rotas `GET` e `POST /cliente/novo` para cadastro
-- [ ] Rotas `GET` e `POST /cliente/editar/<id>` para edição
-- [ ] Rota `POST /cliente/excluir/<id>` com confirmação
-- [ ] Validações de duplicidade de e-mail/documento
-- [ ] **COMMIT:** "Implementa CRUD completo de clientes"
+- [x] Modelar classe `Cliente` (`id`, `nome`, `email`, `telefone`, `cpf_cnpj`, `data_cadastro`)
+- [x] Rota `GET /clientes` com listagem em tabela
+- [x] Rotas `GET` e `POST /cliente/novo` para cadastro
+- [x] Rotas `GET` e `POST /cliente/editar/<id>` para edição
+- [x] Rota `POST /cliente/excluir/<id>` com confirmação
+- [x] Validações de duplicidade de e-mail/documento
+- [x] **COMMIT:** "Implementa CRUD completo de clientes"
 
 ---
 
 ## Fase 4: CRUD de Produtos
 
-- [ ] Modelar classe `Produto` (`id`, `nome`, `preco`, `estoque`, `categoria`, `descricao`)
-- [ ] Implementar Listagem com tabela estilizada
-- [ ] Implementar Criação, Edição e Exclusão
-- [ ] Validação de dados numéricos (preço e estoque >= 0)
-- [ ] **COMMIT:** "Implementa CRUD completo de produtos"
+- [x] Modelar classe `Produto` (`id`, `nome`, `preco`, `estoque`, `categoria`, `descricao`)
+- [x] Implementar Listagem com tabela estilizada
+- [x] Implementar Criação, Edição e Exclusão
+- [x] Validação de dados numéricos (preço e estoque >= 0)
+- [x] **COMMIT:** "Implementa CRUD completo de produtos"
 
 ---
 
 ## Fase 5: Usabilidade, Segurança e Filtros
 
-- [ ] Campo de busca ou filtro (por nome em Produtos e Clientes)
-- [ ] Exibição dinâmica da barra de navegação (exibir nome do usuário logado)
-- [ ] Tratamento de erros de banco com `db.session.rollback()`
-- [ ] Páginas personalizadas de erro 404 e 403 (Acesso Negado)
-- [ ] Mensagens de feedback (`flash`) em todas as operações
-- [ ] **COMMIT:** "Aprimora segurança, feedbacks e filtros de busca"
+- [x] Campo de busca ou filtro (por nome em Produtos e Clientes)
+- [x] Exibição dinâmica da barra de navegação (exibir nome do usuário logado)
+- [x] Tratamento de erros de banco com `db.session.rollback()`
+- [x] Páginas personalizadas de erro 404 e 403 (Acesso Negado)
+- [x] Mensagens de feedback (`flash`) em todas as operações
+- [x] **COMMIT:** "Aprimora segurança, feedbacks e filtros de busca"
 
 ---
 
 ## Fase 6: Documentação e Entrega
 
-- [ ] Documentar endpoints e funções com docstrings
-- [ ] Criar `README.md` completo com guia de instalação, informações do projeto e tecnologias utilizadas
-- [ ] Limpar código, imports não utilizados e prints
-- [ ] **COMMIT FINAL:** "Entrega da versão final do SGC"
+- [x] Documentar endpoints e funções com docstrings
+- [x] Criar `README.md` completo com guia de instalação, informações do projeto e tecnologias utilizadas
+- [x] Limpar código, imports não utilizados e prints
+- [x] **COMMIT FINAL:** "Entrega da versão final do SGC"

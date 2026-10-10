@@ -31,3 +31,4 @@ def registrar_erros(app):
         """Página 500 para erros internos inesperados."""
         db.session.rollback()
         return render_template("erros/500.html"), 500
+

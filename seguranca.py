@@ -30,3 +30,4 @@ def init_csrf(app):
     """Registra a verificação e o helper `csrf_token()` nos templates."""
     app.jinja_env.globals["csrf_token"] = gerar_token
     app.before_request(verificar_token)
+

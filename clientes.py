@@ -170,6 +170,7 @@ def editar(id):
     return render_template("clientes/form.html", cliente=cliente, dados=dados)
 
 
+
 @bp.route("/cliente/excluir/<int:id>", methods=["POST"])
 @login_required
 def excluir(id):

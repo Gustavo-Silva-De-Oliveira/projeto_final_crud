@@ -205,3 +205,4 @@ def excluir(id):
     else:
         flash(f"Produto \"{nome}\" excluído com sucesso.", "success")
     return redirect(url_for("produtos.lista"))
+

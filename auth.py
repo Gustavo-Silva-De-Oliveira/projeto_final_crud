@@ -16,6 +16,7 @@ EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 SENHA_MIN = 8
 
 
+
 @bp.before_app_request
 def carregar_usuario_logado():
     """Disponibiliza o usuário autenticado (ou None) em `g.usuario`."""

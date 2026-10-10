@@ -63,3 +63,4 @@ class Produto(db.Model):
 
     def __repr__(self):
         return f"<Produto {self.nome}>"
+

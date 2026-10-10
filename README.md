@@ -56,10 +56,10 @@ As configurações ficam em um arquivo `.env` na raiz do projeto. Esse arquivo
 cp .env.example .env            # Windows: copy .env.example .env
 ```
 
-| Variável       | Obrigatória | Descrição                                                                 |
-|----------------|-------------|---------------------------------------------------------------------------|
+| Variável       | Obrigatória | Descrição                                                                                                                        |
+| -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `SECRET_KEY`   | Recomendada | Chave que assina a sessão. Sem ela, uma chave temporária é gerada a cada início e todos os usuários são deslogados ao reiniciar. |
-| `DATABASE_URL` | Não         | URL do banco. Padrão: `sqlite:///sgc.db` (arquivo `instance/sgc.db`).    |
+| `DATABASE_URL` | Não         | URL do banco. Padrão: `sqlite:///sgc.db` (arquivo `instance/sgc.db`).                                                            |
 
 Para gerar uma `SECRET_KEY`:
 
@@ -133,20 +133,20 @@ sgc/
 
 ## Rotas
 
-| Método     | Rota                       | Descrição                         |
-|------------|----------------------------|-----------------------------------|
-| GET        | `/`                        | Página inicial (exige login)      |
-| GET, POST  | `/registro`                | Cadastro de usuário               |
-| GET, POST  | `/login`                   | Login                             |
-| POST       | `/logout`                  | Logout                            |
-| GET        | `/clientes?q=`             | Lista e busca de clientes         |
-| GET, POST  | `/cliente/novo`            | Cadastro de cliente               |
-| GET, POST  | `/cliente/editar/<id>`     | Edição de cliente                 |
-| POST       | `/cliente/excluir/<id>`    | Exclusão de cliente               |
-| GET        | `/produtos?q=`             | Lista e busca de produtos         |
-| GET, POST  | `/produto/novo`            | Cadastro de produto               |
-| GET, POST  | `/produto/editar/<id>`     | Edição de produto                 |
-| POST       | `/produto/excluir/<id>`    | Exclusão de produto               |
+| Método    | Rota                    | Descrição                    |
+| --------- | ----------------------- | ---------------------------- |
+| GET       | `/`                     | Página inicial (exige login) |
+| GET, POST | `/registro`             | Cadastro de usuário          |
+| GET, POST | `/login`                | Login                        |
+| POST      | `/logout`               | Logout                       |
+| GET       | `/clientes?q=`          | Lista e busca de clientes    |
+| GET, POST | `/cliente/novo`         | Cadastro de cliente          |
+| GET, POST | `/cliente/editar/<id>`  | Edição de cliente            |
+| POST      | `/cliente/excluir/<id>` | Exclusão de cliente          |
+| GET       | `/produtos?q=`          | Lista e busca de produtos    |
+| GET, POST | `/produto/novo`         | Cadastro de produto          |
+| GET, POST | `/produto/editar/<id>`  | Edição de produto            |
+| POST      | `/produto/excluir/<id>` | Exclusão de produto          |
 
 Todas as rotas, exceto `/registro` e `/login`, exigem usuário autenticado.
 
